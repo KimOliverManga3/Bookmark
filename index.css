@@ -1,0 +1,54 @@
+body{
+    background-color:  #101820;
+    
+}
+
+.Center{
+    background:  #566f75;
+    width: 510px;
+    height: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#Title{
+    text-align: center;
+    margin: 100px 0px 100px 0px;
+    color: antiquewhite;
+    font-family: monospace;
+    font-size: 40px;
+}
+
+#mrk{
+    color:tan;
+}
+
+.content{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input{
+    height: 30px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+#Save{
+    margin: 10px 0 0 80px;
+    height: 30px;
+    width: 150px;
+    background-color:wheat;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+}
