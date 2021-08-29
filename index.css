@@ -1,54 +1,73 @@
 body{
-    background-color:  #101820;
-    
-}
-
-.Center{
-    background:  #566f75;
-    width: 510px;
-    height: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#Title{
-    text-align: center;
-    margin: 100px 0px 100px 0px;
-    color: antiquewhite;
-    font-family: monospace;
-    font-size: 40px;
+    background-color: black;
 }
 
 #mrk{
     color:tan;
 }
 
-.content{
+.header{
+    display: flex;
+    background-color:  #101820;
+    margin: 0;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+.container{
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background:  #383a3d;
+    width: 1000px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
 }
 
-input{
-    height: 30px;
-    width: 300px;
-    border-radius: 10px;
+.input-container{
     background-color: black;
     color: white;
+    border-radius: 10px;
+    height: 30px;
+    width: 600px;
+    margin-top: 20px;
 }
 
-#Save{
-    margin: 10px 0 0 80px;
-    height: 30px;
-    width: 150px;
+.save-button{
     background-color:wheat;
     border-radius: 10px;
+    height: 30px;
+    width: 150px;
     font-family: monospace;
     font-size: 15px;
     font-weight: bold;
+    margin-top: 21px;
 }
+
+.delete-button{
+    background-color: #ed4747;
+    border-radius: 10px;
+    height: 30px;
+    width: 150px;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 21px;
+}
+
+#Title{
+    color: antiquewhite;
+    font-family: monospace;
+    font-size: 50px;
+}
+
+.far{
+    color: white;
+    margin: 35px 30px 0 50px;
+    font-size: 55px;
+}
+
