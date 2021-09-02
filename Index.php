@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -15,10 +17,12 @@
         <h1 id="Title">ʙᴏᴏᴋ<span id="mrk">ᴍᴀʀᴋ</span></h1>
     </div>
 
-    <form action = "validation.php" method = "POST">
-        <div class="container">    
-            <div> 
-                <input class = "input-container" placeholder="Name of the Book to be Saved" name = "input_box" required>
+   
+    <div class="container">
+        <form action = "validation.php" method = "POST">
+            <div class="primary"> 
+                <div> <input class = "input-container" placeholder="Name of the Book to be Saved" name = "input_box" required> </div>
+
                 <?php
                     $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -26,13 +30,23 @@
                         echo "<p id = 'msg'> Book is Already Listed. </p>";
                     }    
                 ?>
-            </div>
-            <div> <button class = "save-button" name = "save_changes">Save</button> </div>
-            <div> <button class = "delete-button" name = "remove_something"> Delete </button> </div>     
-        </div>    
-    </form>
 
-   
+                <div> <button class = "save-button" name = "save_changes">Save</button> </div>
+                <div> <button class = "delete-button" name = "remove_something"> Delete </button> </div>
+            </div>       
+        </form>
+
+        <?php
+            
+            if(isset($_SESSION['Book']))
+                echo "<div id = 'Book'> • ".$_SESSION['Book']." <br> </div>";      
+            else
+                unset($_SESSION['Book']);
+
+            session_destroy();
+        ?>
+
+    </div> 
 
 </body>
 
