@@ -1,4 +1,17 @@
-<?php session_start(); ?>
+<?php 
+
+    include('validation.php'); 
+
+    if(isset($_GET['edit'])){
+        $id = $_GET['edit'];
+
+        $retrieve = mysqli_query($conn, "SELECT * FROM books WHERE ID = '$id'") or die("Connection Failed.");
+        $data = mysqli_fetch_array($retrieve);
+        $Input = $data['BookName'];
+        $update = true;
+    }
+
+?>
 
 <!DOCTYPE html>
 
@@ -13,38 +26,57 @@
 <body>
 
     <div class = "header">  
-        <i class="far fa-bookmark"></i>
+        <span id = "bookmark-icon"> <i class="far fa-bookmark"></i> </span>
         <h1 id="Title">ʙᴏᴏᴋ<span id="mrk">ᴍᴀʀᴋ</span></h1>
     </div>
 
-   
     <div class="container">
-        <form action = "validation.php" method = "POST">
-            <div class="primary"> 
-                <div> <input class = "input-container" placeholder="Name of the Book to be Saved" name = "input_box" required> </div>
+        <form action = "validation.php"method = "POST">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <div class = "primary">
+                <div> 
+                    <input class="input-container" placeholder="Name of the Book to be Saved" name="input_box" value="<?php echo $Input ?>" required> 
+                </div> 
+                
+                <div>
 
-                <?php
-                    $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-                    if(strpos($link, "book=exists") == true){
-                        echo "<p id = 'msg'> Book is Already Listed. </p>";
-                    }    
-                ?>
-
-                <div> <button class = "save-button" name = "save_changes">Save</button> </div>
-                <div> <button class = "delete-button" name = "remove_something"> Delete </button> </div>
-            </div>       
+                </div>
+                    <select name="status" class="status">
+                        <option value="" diasbled="disabled" id = "head"> Status </option>
+                        <option value="Haven't Read">Haven't Read"</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Dropped">Dropped</option>
+                    </select>
+                <div> 
+                    <?php  if($update == false): ?>
+                        <button class = "save-button" name = "save_changes">Save</button>
+                    <?php  else: ?>
+                        <button class = "save-button" name = "update_changes">Update</button>
+                    <?php  endif ?>
+                </div> 
+            </div>    
         </form>
 
         <?php
-            
-            if(isset($_SESSION['Book']))
-                echo "<div id = 'Book'> • ".$_SESSION['Book']." <br> </div>";      
-            else
-                unset($_SESSION['Book']);
+            $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-            session_destroy();
+            if(strpos($link, "book=exists") == true){
+                echo "<script> alert('$Input already Exists.'); </script>";
+            }  
+
+            if(isset($Input)){
+                $sql = "SELECT * FROM books";
+                $conn = mysqli_connect('localhost', 'root', "", 'bookmark') or die("Connection Failed.");
+                $reso = mysqli_query($conn,$sql);
+                while ($row = mysqli_fetch_assoc($reso)){
+                    echo "<div id = 'Book'> • ".$row['BookName']."
+                    <a id = 'edit' href ='index.php?edit= ".$row['ID']."'> <i class='far fa-edit'></i> </a> 
+                    <a id = 'delete' href =' validation.php?delete=".$row['ID']." '> <i class='far fa-trash-alt'></i> </a>
+                    <br> </div>";
+                }   
+            }
         ?>
+        
 
     </div> 
 
