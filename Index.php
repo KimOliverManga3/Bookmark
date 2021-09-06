@@ -1,6 +1,7 @@
 <?php 
 
-    include('validation.php'); 
+    include('validation.php');
+    session_start();
 
     if(isset($_GET['edit'])){
         $id = $_GET['edit'];
@@ -8,6 +9,7 @@
         $retrieve = mysqli_query($conn, "SELECT * FROM books WHERE ID = '$id'") or die("Connection Failed.");
         $data = mysqli_fetch_array($retrieve);
         $Input = $data['BookName'];
+        $_SESSION['id'] = $data['ID'];
         $update = true;
     }
 

@@ -1,4 +1,5 @@
 <?php
+
     session_start();
 
     $Input = '';
@@ -41,10 +42,12 @@
     if(isset($_POST['update_changes'])){
         $name = $_POST['input_box'];
         $stat = $_POST['status'];
-        $change = "UPDATE books SET BookName = '$name', Status = '$stat' WHERE Bookname = '$name'";
+        $change = "UPDATE books SET BookName = '$name', Status = '$stat' WHERE ID = ".$_SESSION['id']." ";
         mysqli_query($conn, $change);
         header("location: index.php?status=updated");
         exit();
-    }   
+    }
+    
+    session_destroy();
 
 ?>
