@@ -41,10 +41,11 @@
                 <div>
 
                 </div>
-                    <select name="status" class="status">
-                        <option value="" diasbled="disabled" id = "head"> Status </option>
-                        <option value="Haven't Read">Haven't Read"</option>
+                    <select name="status" class="status" required>
+                        <option value="" diasbled="disabled"> Status </option>
+                        <option value="Added">Haven't Read</option>
                         <option value="Reading">Reading</option>
+                        <option value="Finished">Finished</option>
                         <option value="Dropped">Dropped</option>
                     </select>
                 <div> 
@@ -61,7 +62,10 @@
             $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
             if(strpos($link, "book=exists") == true){
-                echo "<script> alert('$Input already Exists.'); </script>";
+                echo "<script> alert('$Input already Exists.') </script>";
+            }
+            else if (strpos($link, "status=updated") == true){
+                echo "<script> alert('Update Successful.') </script>";
             }  
 
             if(isset($Input)){
