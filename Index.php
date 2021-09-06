@@ -75,7 +75,7 @@
                 $conn = mysqli_connect('localhost', 'root', "", 'bookmark') or die("Connection Failed.");
                 $reso = mysqli_query($conn,$sql);
                 while ($row = mysqli_fetch_assoc($reso)){
-                    echo "<div id = 'Book'> • ".$row['BookName']."
+                    echo "<div id = 'Book'> • ".$row['BookName']." (".$row['Status'].")
                     <a id = 'edit' href ='index.php?edit= ".$row['ID']."'> <i class='far fa-edit'></i> </a> 
                     <a id = 'delete' href =' validation.php?delete=".$row['ID']." '> <i class='far fa-trash-alt'></i> </a>
                     <br> </div>";
